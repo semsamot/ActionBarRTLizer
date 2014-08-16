@@ -11,22 +11,23 @@ Using (only 3 simple steps)
 1)
 Define a private variable of ActionBarRtlizer class in your activity class.
 
-  private ActionBarRtlizer rtlizer;
+    private ActionBarRtlizer rtlizer;
 
 2)
 In overrided "onCreate" method of your activity, after calling "setContentView" method, add these two lines:
 
-  rtlizer = new ActionBarRtlizer(this);
-  rtlizer.rtlize();
+    rtlizer = new ActionBarRtlizer(this);
+    rtlizer.rtlize();
 
 3)
 In overrided "onResume" method of your activity, add:
   
-  if (rtlizer != null)
-    rtlizer.rtlize();
+    if (rtlizer != null)
+      rtlizer.rtlize();
 
 Compile your app and enjoy of this awesome RTLization!
 
 
 Known issues:
+================
 - In API Level 10 and lower versions, the main activity(launcer activity)'s ActionBar is not rtlized properly. (will be fixed soon, with the help of God)
