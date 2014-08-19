@@ -6,7 +6,7 @@ A library that can RTLize android `ActionBar`!
 It is not a custom `ActionBar` or anything else!
 Its only a piece of code that can re-arrange the android `ActionBar` in RTL direction.
 
-Using (only 3 simple steps)
+Usage (only 3 simple steps)
 ================
 1.
 Define a private variable of `ActionBarRtlizer` class in your activity class.
