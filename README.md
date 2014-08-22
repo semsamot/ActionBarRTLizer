@@ -6,16 +6,27 @@ A library that can RTLize android `ActionBar`!
 It is not a custom `ActionBar` or anything else!
 Its only a piece of code that can re-arrange the android `ActionBar` in RTL direction.
 
-Usage (only 3 simple steps)
+Usage (only 4 simple steps)
 ================
 1.
+Add this line to `build.gradle` file inside your app project folder:
+```groovy
+dependencies {
+    // other stuff
+    .
+    .
+    compile 'info.semsamot:actionbar-rtlizer:1.+@aar'
+}
+```
+
+2.
 Define a private variable of `ActionBarRtlizer` class in your activity class.
 
 ```java
 private ActionBarRtlizer rtlizer;
 ```
 
-2.
+3.
 In overrided `onCreate` method of your activity, after calling `setContentView` method, add these two lines:
 
 ```java
@@ -23,7 +34,7 @@ rtlizer = new ActionBarRtlizer(this);
 rtlizer.rtlize();
 ```
 
-3.
+4.
 In overrided `onResume` method of your activity, add:
 
 ```java
@@ -33,6 +44,10 @@ if (rtlizer != null)
 
 Then compile your app and enjoy of this awesome RTLization!
 
+
+Compatibility:
+================
+This library is compatible with API Level 7+
 
 Known issues:
 ================
