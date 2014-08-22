@@ -60,6 +60,7 @@ If you have interested in using this library in your app, then you may send me y
 Donate:
 ================
 With money? **No**
+
 If you like this library, you can make a donation by clicking on the star in top of this page. Its so simple!
 
 Tags:
