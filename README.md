@@ -61,7 +61,7 @@ Donate:
 ================
 With money? **No**
 
-If you like this library, you can make a donation by clicking on the star in top of this page. Its so simple!
+If you like this library, you can make a donation by **clicking** on the **star** in top of this page. Its so simple!
 
 Tags:
 action bar rtl, rtl action bar, action bar in rtl, action bar rtl direction, android action bar rtl, action bar rtl arranger, action bar rtlizer, actionbar rtl, rtl actionbar
