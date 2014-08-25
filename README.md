@@ -27,7 +27,7 @@ private ActionBarRtlizer rtlizer;
 ```
 
 3.
-In overrided `onCreate` method of your activity, after calling `setContentView` method, add these two lines:
+In `onCreate` method of your activity, after calling `setContentView` method, add these two lines:
 
 ```java
 rtlizer = new ActionBarRtlizer(this);
@@ -35,7 +35,7 @@ rtlizer.rtlize();
 ```
 
 4.
-In overrided `onResume` method of your activity, add:
+In `onResume` method of your activity, add:
 
 ```java
 if (rtlizer != null)
@@ -45,23 +45,39 @@ if (rtlizer != null)
 Then compile your app and enjoy of this awesome RTLization!
 
 
-Compatibility:
+Compatibility
 ================
 This library is compatible with API Level 7+
 
-Known issues:
+Known issues
 ================
 - In API Level 10 and lower versions, the main activity(launcher activity)'s ActionBar is not rtlized properly. (will be fixed soon, with the help of God)
 
-Apps using this library:
+Apps using this library
 ================
 If you have interested in using this library in your app, then you may send me your app name, so i can put that on the list and have proud that your app used this library.
 
-Donate:
+Donate
 ================
 With money? **No**
 
 If you like this library, you can make a donation by **clicking** on the **star** in top of this page. Its so simple!
+
+License
+================
+> Copyright 2014 semsamot
+
+> Licensed under the Apache License, Version 2.0 (the "License");
+> you may not use this file except in compliance with the License.
+> You may obtain a copy of the License at
+
+>     http://www.apache.org/licenses/LICENSE-2.0
+
+> Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
 Tags:
 action bar rtl, rtl action bar, action bar in rtl, action bar rtl direction, android action bar rtl, action bar rtl arranger, action bar rtlizer, actionbar rtl, rtl actionbar
