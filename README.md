@@ -8,8 +8,7 @@ Its only a piece of code that can re-arrange the android `ActionBar` in RTL dire
 
 Usage (only 4 simple steps)
 ================
-1.
-Add this line to `build.gradle` file inside your app project folder:
+**1)** Add this line to `build.gradle` file inside your app project folder:
 ```groovy
 dependencies {
     // other stuff
@@ -19,23 +18,20 @@ dependencies {
 }
 ```
 
-2.
-Define a private variable of `ActionBarRtlizer` class in your activity class.
+**2)** Define a private variable of `ActionBarRtlizer` class in your activity class.
 
 ```java
 private ActionBarRtlizer rtlizer;
 ```
 
-3.
-In `onCreate` method of your activity, after calling `setContentView` method, add these two lines:
+**3)** In `onCreate` method of your activity, after calling `setContentView` method, add these two lines:
 
 ```java
 rtlizer = new ActionBarRtlizer(this);
 rtlizer.rtlize();
 ```
 
-4.
-In `onResume` method of your activity, add:
+**4)** In `onResume` method of your activity, add:
 
 ```java
 if (rtlizer != null)
@@ -44,6 +40,25 @@ if (rtlizer != null)
 
 Then compile your app and enjoy of this awesome RTLization!
 
+Alternative features
+================
+You can retrieve `ActionBarView`, `ActionMenuView` and `HomeView` after rtlization has been completed.
+Fortunately you can listen for rtlization completed event.
+
+An example of using these features is that you can animate ActionBar menu items after rtlization. it's so simple! (see the below sample)
+
+```java
+rtlizer.setOnRtlizeFinishedListener(new ActionBarRtlizer.OnRtlizeFinishedListener() {
+    @Override
+    public void onRtlizeFinished()
+    {
+        Animation rotateAnim = AnimationUtils.loadAnimation(getBaseContext(), R.anim.rotate);
+        View actionMenuItem = rtlizer.getActionMenuView().findViewById(
+                R.id.action_item);
+        actionMenuItem.setAnimation(rotateAnim);
+    }
+});
+```
 
 Compatibility
 ================
