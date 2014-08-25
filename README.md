@@ -60,6 +60,16 @@ rtlizer.setOnRtlizeFinishedListener(new ActionBarRtlizer.OnRtlizeFinishedListene
 });
 ```
 
+Provided methods for retrieving ActionBar view and its children:
+
+```java
+// All return value types are of ViewGroup class.
+getActionBarView()
+getHomeViewContainer() // returns null on lower API versions than 17
+getHomeView()
+getActionMenuView()
+```
+
 Compatibility
 ================
 This library is compatible with API Level 7+
