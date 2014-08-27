@@ -235,25 +235,6 @@ public class ActionBarRtlizer {
         }
     }
 
-    private void invertViewChildPositions(ViewGroup viewGroup)
-    {
-        int viewChildCount = viewGroup.getChildCount();
-
-        if (viewChildCount < 2 ||
-                !viewGroup.getChildAt(0).getClass().toString().contains("HomeView"))
-            return;
-
-        View[] viewChilds = new View[viewChildCount];
-        for (int i = viewChildCount - 1; i >= 0; i--) {
-            viewChilds[i] = viewGroup.getChildAt(i);
-            viewGroup.removeViewAt(i);
-        }
-
-        for (int i = viewChildCount - 1; i >= 0; i--) {
-            viewGroup.addView(viewChilds[i]);
-        }
-    }
-
     public ViewGroup getHomeView()
     {
         return homeView;
