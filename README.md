@@ -24,7 +24,7 @@ dependencies {
 private ActionBarRtlizer rtlizer;
 ```
 
-**3)** In `onCreate` method of your activity, after calling `setContentView` method, add these two lines:
+**3)** In `onCreateOptionsMenu` method of your activity, before `return` statement, add these two lines:
 
 ```java
 rtlizer = new ActionBarRtlizer(this);
