@@ -6,6 +6,13 @@ A library that can RTLize android `ActionBar`!
 It is not a custom `ActionBar` or anything else!
 Its only a piece of code that can re-arrange the android `ActionBar` in RTL direction.
 
+Announcement
+================
+ActionBarRTLizer v2 is coming...
+Fully compatible with API Level 7+ and all issues has been solved!
+Based on a new Amazaing Library -> Rtlize Everything(coming soon)!
+Be patient...
+
 Usage (only 4 simple steps)
 ================
 **1)** Add this line to `build.gradle` file inside your app project folder:
