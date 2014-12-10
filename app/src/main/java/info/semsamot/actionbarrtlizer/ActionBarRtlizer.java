@@ -16,7 +16,7 @@ import android.widget.ImageView;
  */
 public class ActionBarRtlizer {
 
-    private static final String TAG = "com.semsamot.actionbarrtlizer";
+    private static final String TAG = "info.semsamot.actionbarrtlizer";
     private final Activity mActivity;
     private OnRtlizeFinishedListener onRtlizeFinishedListener;
 
@@ -29,6 +29,18 @@ public class ActionBarRtlizer {
     public void rtlize()
     {
         final ViewGroup actionBarView = getActionBarView();
+
+        if (actionBarView == null)
+        {
+            Log.d(TAG, "cannot find actionBarView");
+            return;
+        }
+
+        if (actionBarView.getTag() == "rtlized")
+        {
+            Log.d(TAG, "it's rtlized previously");
+            return;
+        }
 
         actionBarView.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -43,6 +55,8 @@ public class ActionBarRtlizer {
                     actionBarView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
             }
         });
+
+        actionBarView.setTag("rtlized");
     }
 
     public ViewGroup getActionBarView() {
@@ -178,6 +192,7 @@ public class ActionBarRtlizer {
                         child.setRight(childRight);
                     }
                 });
+                child.invalidate();
                 child.requestLayout();
             }
 
@@ -216,6 +231,7 @@ public class ActionBarRtlizer {
                     lastChild.setRight(lastChildRight);
                 }
             });
+            lastChild.invalidate();
             lastChild.requestLayout();
         }
     }
