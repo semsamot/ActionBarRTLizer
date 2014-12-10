@@ -1,8 +1,6 @@
-<<<<<<< HEAD
 Version 2 is released (uploading to maven ASAP)
 =======
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/info.semsamot/actionbar-rtlizer/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/info.semsamot/actionbar-rtlizer)
->>>>>>> FETCH_HEAD
 
 ActionBar RTLizer (ActionBar RTL Arranger)
 ================
@@ -12,18 +10,14 @@ A library that can RTLize android `ActionBar`!
 It is not a custom `ActionBar` or anything else!
 Its only a piece of code that can re-arrange the android `ActionBar` in RTL direction.
 
-<<<<<<< HEAD
-Usage (only 3 simple steps)
-=======
 Announcement
 ================
-ActionBarRTLizer v2 is coming...   
-Fully compatible with API Level 7+ and all issues has been solved! 
-Based on a new Amazaing Library -> Rtlize Everything(coming soon)! 
+ActionBarRTLizer v2 arrived!
+Fully compatible with API Level 7+ and all issues has been solved!
+Based on a new Amazaing Library -> Rtlize Everything(coming soon)!
 Be patient...
 
-Usage (only 4 simple steps)
->>>>>>> FETCH_HEAD
+Usage (only 3 simple steps)
 ================
 **1)** Add this line to `build.gradle` file inside your app project folder:
 ```groovy
@@ -41,11 +35,7 @@ dependencies {
 private ActionBarRtlizer rtlizer;
 ```
 
-<<<<<<< HEAD
-**3)** In `onCreateOptionsMenu` method of your activity, after calling `setContentView` method, add these two lines:
-=======
 **3)** In `onCreateOptionsMenu` method of your activity, before `return` statement, add these two lines:
->>>>>>> FETCH_HEAD
 
 ```java
 rtlizer = new ActionBarRtlizer(this);
@@ -61,10 +51,10 @@ Then compile your app and enjoy of this awesome RTLization!
 
 Alternative features
 ================
-You can retrieve `ActionBarView`, `ActionMenuView` and `HomeView` after rtlization has been completed.
-Fortunately you can listen for rtlization completed event.
+You can retrieve `ActionBarView`, `ActionMenuView` and `HomeView` after RTLization has been completed.
+Fortunately you can listen for RTLization completed event.
 
-An example of using these features is that you can animate ActionBar menu items after rtlization. it's so simple! (see the below sample)
+An example of using these features is that you can animate ActionBar menu items after RTLization. it's so simple! (see the below sample)
 
 ```java
 rtlizer.setOnRtlizeFinishedListener(new ActionBarRtlizer.OnRtlizeFinishedListener() {
@@ -95,7 +85,7 @@ This library is compatible with API Level 7+
 
 Known issues
 ================
-- In API Level 10 and lower versions, the main activity(launcher activity)'s ActionBar is not rtlized properly. (will be fixed soon, with the help of God)
+API Level 10- is not supported until the release of 2.0.1 version
 
 Apps using this library
 ================
