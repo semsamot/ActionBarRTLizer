@@ -73,15 +73,37 @@ public class RtlizeEverything {
         final int newChildRight = containerRight - childLeft;
         final int newChildLeft = newChildRight - child.getWidth();
 
-        child.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View view,
-                                       int i, int i2, int i3, int i4,
-                                       int i5, int i6, int i7, int i8) {
-                child.setLeft(newChildLeft);
-                child.setRight(newChildRight);
+        if (Build.VERSION.SDK_INT < 11)
+        {
+            if (child.isShown())
+            {
+                child.layout(newChildLeft, child.getTop(), newChildRight, child.getBottom());
+                child.forceLayout();
+            }else {
+                child.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        child.layout(newChildLeft, child.getTop(), newChildRight, child.getBottom());
+                        child.forceLayout();
+
+                        if (Build.VERSION.SDK_INT < 16)
+                            child.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                        else
+                            child.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    }
+                });
             }
-        });
-        child.requestLayout();
+        }else {
+            child.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+                @Override
+                public void onLayoutChange(View view,
+                                           int i, int i2, int i3, int i4,
+                                           int i5, int i6, int i7, int i8) {
+                    child.setLeft(newChildLeft);
+                    child.setRight(newChildRight);
+                }
+            });
+            child.requestLayout();
+        }
     }
 }
