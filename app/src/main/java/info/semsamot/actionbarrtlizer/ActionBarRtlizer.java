@@ -1,5 +1,6 @@
 package info.semsamot.actionbarrtlizer;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
 import android.util.Log;
@@ -58,6 +59,7 @@ public class ActionBarRtlizer {
         return null;
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void flipActionBarUpIconIfAvailable(ViewGroup homeView)
     {
         if (homeView.getChildCount() < 2) return;

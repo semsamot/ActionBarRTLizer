@@ -1,4 +1,4 @@
-Version 2 is released (uploading to maven ASAP)
+Version 2 is released!
 =======
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/info.semsamot/actionbar-rtlizer/badge.svg?style=flat)](https://maven-badges.herokuapp.com/maven-central/info.semsamot/actionbar-rtlizer)
 
@@ -12,10 +12,9 @@ Its only a piece of code that can re-arrange the android `ActionBar` in RTL dire
 
 Announcement
 ================
-ActionBarRTLizer v2 arrived!
-Fully compatible with API Level 7+ and all issues has been solved!
-Based on a new Amazaing Library -> Rtlize Everything(coming soon)!
-Be patient...
+ActionBarRTLizer v2 has arrived!  
+Fully compatible with API Level 7+ and all issues has been solved!  
+Based on a new Amazaing Library -> Rtlize Everything(coming soon)!  
 
 Usage (only 3 simple steps)
 ================
@@ -25,7 +24,7 @@ dependencies {
     // other stuff
     .
     .
-    compile 'info.semsamot:actionbar-rtlizer:1.+@aar'
+    compile 'info.semsamot:actionbar-rtlizer:2.+@aar'
 }
 ```
 
@@ -56,6 +55,7 @@ Fortunately you can listen for RTLization completed event.
 
 An example of using these features is that you can animate ActionBar menu items after RTLization. it's so simple! (see the below sample)
 
+ ** doesn't work on v2+ yet. **
 ```java
 rtlizer.setOnRtlizeFinishedListener(new ActionBarRtlizer.OnRtlizeFinishedListener() {
     @Override
@@ -81,11 +81,11 @@ getActionMenuView()
 
 Compatibility
 ================
-This library is compatible with API Level 7+
+This library is fully compatible with API Level 7+
 
 Known issues
 ================
-API Level 10- is not supported until the release of 2.0.1 version
+?
 
 Apps using this library
 ================

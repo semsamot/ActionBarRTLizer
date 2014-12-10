@@ -1,5 +1,6 @@
 package info.semsamot.actionbarrtlizer;
 
+import android.annotation.TargetApi;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ public class RtlizeEverything {
     {
         container.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onGlobalLayout() {
                 arrangeInRtl(container, recursive);
@@ -48,6 +50,7 @@ public class RtlizeEverything {
             } else {
                 child.getViewTreeObserver().addOnGlobalLayoutListener(
                         new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onGlobalLayout() {
                         mirrorViewPosition(container, child);
@@ -62,6 +65,7 @@ public class RtlizeEverything {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private static void mirrorViewPosition(ViewGroup container, final View child)
     {
         int containerLeft = 0;
@@ -80,7 +84,9 @@ public class RtlizeEverything {
                 child.layout(newChildLeft, child.getTop(), newChildRight, child.getBottom());
                 child.forceLayout();
             }else {
-                child.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                child.getViewTreeObserver().addOnGlobalLayoutListener(
+                        new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onGlobalLayout() {
                         child.layout(newChildLeft, child.getTop(), newChildRight, child.getBottom());
