@@ -1,3 +1,5 @@
+Version 2 is released (uploading to maven ASAP)
+
 ActionBar RTLizer (ActionBar RTL Arranger)
 ================
 
@@ -6,7 +8,7 @@ A library that can RTLize android `ActionBar`!
 It is not a custom `ActionBar` or anything else!
 Its only a piece of code that can re-arrange the android `ActionBar` in RTL direction.
 
-Usage (only 4 simple steps)
+Usage (only 3 simple steps)
 ================
 **1)** Add this line to `build.gradle` file inside your app project folder:
 ```groovy
@@ -24,18 +26,16 @@ dependencies {
 private ActionBarRtlizer rtlizer;
 ```
 
-**3)** In `onCreate` method of your activity, after calling `setContentView` method, add these two lines:
+**3)** In `onCreateOptionsMenu` method of your activity, after calling `setContentView` method, add these two lines:
 
 ```java
 rtlizer = new ActionBarRtlizer(this);
-rtlizer.rtlize();
-```
+ViewGroup actionBarView = rtlizer.getActionBarView();
+ViewGroup homeView = (ViewGroup)rtlizer.findViewByClass("HomeView", actionBarView);
 
-**4)** In `onResume` method of your activity, add:
-
-```java
-if (rtlizer != null)
-    rtlizer.rtlize();
+rtlizer.flipActionBarUpIconIfAvailable(homeView);
+RtlizeEverything.rtlize(actionBarView);
+RtlizeEverything.rtlize(homeView);
 ```
 
 Then compile your app and enjoy of this awesome RTLization!
