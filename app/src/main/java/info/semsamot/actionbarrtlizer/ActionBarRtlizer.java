@@ -17,11 +17,8 @@ import android.widget.ImageView;
  */
 public class ActionBarRtlizer {
 
-    private static final String TAG = "info.semsamot.actionbarrtlizer";
+    private static final String TAG = "info.semsamot.actionbar-rtlizer";
     private final Activity mActivity;
-    private OnRtlizeFinishedListener onRtlizeFinishedListener;
-
-    private ViewGroup homeView, actionMenuView, homeViewContainer;
 
     public ActionBarRtlizer(Activity activity) {
         this.mActivity = activity;
@@ -47,27 +44,42 @@ public class ActionBarRtlizer {
         return actionBarView;
     }
 
-    private View findViewByClass(String className, ViewGroup parent)
+    private View findViewByClass(String className, View parent)
     {
-        for (int i=0; i < parent.getChildCount(); i++)
+        int childCount = parent instanceof ViewGroup ? ((ViewGroup)parent).getChildCount() : -1;
+
+        if (parent == null)
+            return null;
+
+        if (parent.getClass().toString().contains(className))
+            return parent;
+
+
+        if (childCount < 1)
+            return null;
+
+        for (int i=0; i < childCount; i++)
         {
-            View child = parent.getChildAt(i);
-            if (child.getClass().toString().contains(className))
-                return child;
+            View child = ((ViewGroup)parent).getChildAt(i);
+
+            View target = findViewByClass(className, child);
+
+            if (target != null)
+                return target;
         }
 
         return null;
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private void flipActionBarUpIconIfAvailable(ViewGroup homeView)
+    public void flipActionBarUpIconIfAvailable(ViewGroup homeView)
     {
-        if (homeView.getChildCount() < 2) return;
+        if (homeView == null || homeView.getChildCount() < 2) return;
 
         ImageView upIcon = (ImageView) homeView.getChildAt(0);
 
         if (Build.VERSION.SDK_INT >= 11)
-            upIcon.setRotation(180);
+            upIcon.setRotationX(180);
         else
         {
             Animation hFlip = AnimationUtils.loadAnimation(mActivity, R.anim.flip_horizontal);
@@ -75,29 +87,20 @@ public class ActionBarRtlizer {
         }
     }
 
-    public ViewGroup getHomeView()
+    public View getHomeView()
     {
-        return homeView;
+        return findViewByClass("HomeView", getActionBarView());
     }
 
-    public ViewGroup getActionMenuView()
+    public View getActionMenuView()
     {
-        return actionMenuView;
+        return findViewByClass("MenuView", getActionBarView());
     }
 
-    public ViewGroup getHomeViewContainer() {
-        return homeViewContainer;
-    }
-
-    public OnRtlizeFinishedListener getOnRtlizeFinishedListener() {
-        return onRtlizeFinishedListener;
-    }
-
-    public void setOnRtlizeFinishedListener(OnRtlizeFinishedListener onRtlizeFinishedListener) {
-        this.onRtlizeFinishedListener = onRtlizeFinishedListener;
-    }
-
-    public interface OnRtlizeFinishedListener{
-        public void onRtlizeFinished();
+    public View getHomeViewContainer() {
+        if (Build.VERSION.SDK_INT >= 17)
+            return getActionBarView().getChildAt(0);
+        else
+            return null;
     }
 }

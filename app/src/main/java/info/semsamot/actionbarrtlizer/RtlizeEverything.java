@@ -18,6 +18,8 @@ public class RtlizeEverything {
 
     public static void rtlize(final ViewGroup container, final boolean recursive)
     {
+        if (container == null) return;
+
         container.getViewTreeObserver().addOnGlobalLayoutListener(
                 new ViewTreeObserver.OnGlobalLayoutListener() {
             @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
