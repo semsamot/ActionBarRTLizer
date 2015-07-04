@@ -3,10 +3,8 @@ package info.semsamot.actionbarrtlizer;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -19,9 +17,15 @@ public class ActionBarRtlizer {
 
     private static final String TAG = "info.semsamot.actionbar-rtlizer";
     private final Activity mActivity;
+    private final String mActionBarIdentifierName;
 
     public ActionBarRtlizer(Activity activity) {
+        this(activity, "action_bar");
+    }
+
+    public ActionBarRtlizer(Activity activity, String actionBarIdentifierName) {
         this.mActivity = activity;
+        this.mActionBarIdentifierName = actionBarIdentifierName;
     }
 
     public ViewGroup getActionBarView() {
@@ -32,12 +36,12 @@ public class ActionBarRtlizer {
         View view = window.getDecorView();
 
         resId = mActivity.getResources().getIdentifier(
-                "action_bar", "id", mActivity.getPackageName());
+                mActionBarIdentifierName, "id", mActivity.getPackageName());
         actionBarView = (ViewGroup) view.findViewById(resId);
 
         if (actionBarView == null)
         {
-            resId = mActivity.getResources().getIdentifier("action_bar", "id", "android");
+            resId = mActivity.getResources().getIdentifier(mActionBarIdentifierName, "id", "android");
             actionBarView = (ViewGroup) view.findViewById(resId);
         }
 
