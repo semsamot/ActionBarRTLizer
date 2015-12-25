@@ -34,7 +34,7 @@ private ActionBarRtlizer rtlizer;
 ```java
 rtlizer = new ActionBarRtlizer(this);
 ViewGroup actionBarView = rtlizer.getActionBarView();
-ViewGroup homeView = (ViewGroup)rtlizer.findViewByClass("HomeView", actionBarView);
+ViewGroup homeView = (ViewGroup)rtlizer.getHomeView();
 
 rtlizer.flipActionBarUpIconIfAvailable(homeView);
 RtlizeEverything.rtlize(actionBarView);
