@@ -34,7 +34,7 @@ private ActionBarRtlizer rtlizer;
 ```java
 rtlizer = new ActionBarRtlizer(this);
 ViewGroup actionBarView = rtlizer.getActionBarView();
-ViewGroup homeView = (ViewGroup)rtlizer.findViewByClass("HomeView", actionBarView);
+ViewGroup homeView = (ViewGroup)rtlizer.getHomeView();
 
 rtlizer.flipActionBarUpIconIfAvailable(homeView);
 RtlizeEverything.rtlize(actionBarView);
@@ -43,7 +43,7 @@ RtlizeEverything.rtlize(homeView);
 
 If you are using `Toolbar` widget instead of `ActionBar` then you may change the first line to:
 ```java
-rtlizer = new ActionBarRtlizer(this, "toolbar"); // "toolbar" or any other id for your Toolbar widget.
+rtlizer = new ActionBarRtlizer(this, "toolbar"); // "toolbar" or -any other id- for your Toolbar widget.
 ```
 
 Then compile your app and enjoy of this awesome RTLization!
