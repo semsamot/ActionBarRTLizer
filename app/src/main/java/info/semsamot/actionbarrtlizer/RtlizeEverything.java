@@ -5,9 +5,12 @@ import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 /**
  * Created by semsamot on 11/21/14.
+ * Modified by maudem-airg on 7/24/15
  */
 public class RtlizeEverything {
 
@@ -70,8 +73,8 @@ public class RtlizeEverything {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private static void mirrorViewPosition(ViewGroup container, final View child)
     {
-        int containerLeft = 0;
-        int containerRight = container.getWidth();
+        int containerLeft = container.getLeft();
+        int containerRight = containerLeft + container.getWidth();
 
         int childLeft = child.getLeft();
         int childRight = child.getRight();
@@ -81,6 +84,7 @@ public class RtlizeEverything {
 
         if (Build.VERSION.SDK_INT < 11)
         {
+            //not supported/corrected
             if (child.isShown())
             {
                 child.layout(newChildLeft, child.getTop(), newChildRight, child.getBottom());
@@ -107,11 +111,67 @@ public class RtlizeEverything {
                 public void onLayoutChange(View view,
                                            int i, int i2, int i3, int i4,
                                            int i5, int i6, int i7, int i8) {
-                    child.setLeft(newChildLeft);
+                    if (!(child instanceof TextView))//cheat for the title to not been cut off
+                        child.setLeft(newChildLeft);
                     child.setRight(newChildRight);
+                    child.setLayoutParams(child.getLayoutParams());
                 }
             });
             child.requestLayout();
+        }
+    }
+
+    /**
+     * change the position when the screen rotate.
+     * (correct the bug of having the title of the ActionBar in the middle)
+     * @param container the ActionBarView
+     */
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static void rtlizeOnConfigurationChanged(final ViewGroup container){
+        int childCount = container.getChildCount();
+
+        for (int i=0; i < childCount; i++)
+        {
+            final View child = container.getChildAt(i);
+
+            if (Build.VERSION.SDK_INT < 11) {
+                //not supported/corrected
+                if (child.isShown()) {
+                    child.setLayoutParams(child.getLayoutParams());
+                    child.forceLayout();
+                } else {
+                    child.getViewTreeObserver().addOnGlobalLayoutListener(
+                            new ViewTreeObserver.OnGlobalLayoutListener() {
+                                @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+                                @Override
+                                public void onGlobalLayout() {
+                                    child.setLayoutParams(child.getLayoutParams());
+                                    child.forceLayout();
+
+                                    if (Build.VERSION.SDK_INT < 16)
+                                        child.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                                    else
+                                        child.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                                }
+                            });
+                }
+            } else {
+                child.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+                    @Override
+                    public void onLayoutChange(View view,
+                                               int i, int i2, int i3, int i4,
+                                               int i5, int i6, int i7, int i8) {
+                        if (child instanceof ImageButton) {//for the home button
+                            child.setLeft(container.getWidth() - child.getWidth());
+                            child.setRight(container.getWidth());
+                        } else if (child instanceof TextView) {//for the title
+                            child.setRight(container.getWidth() - container.getHeight());
+                        }
+                        child.setLayoutParams(child.getLayoutParams());
+                    }
+                });
+                child.requestLayout();
+            }
         }
     }
 }
