@@ -48,7 +48,7 @@ public class ActionBarRtlizer {
         return actionBarView;
     }
 
-    private View findViewByClass(String className, View parent)
+    public View findViewByClass(String className, View parent)
     {
         int childCount = parent instanceof ViewGroup ? ((ViewGroup)parent).getChildCount() : -1;
 
